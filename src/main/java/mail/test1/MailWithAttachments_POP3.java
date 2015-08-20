@@ -74,17 +74,17 @@ public class MailWithAttachments_POP3 {
             System.out.println(inMessage.getFrom()[0].toString());
             attachments.clear();
             if (inMessage.isMimeType("text/plain")) {
-          System.out.println("text/plain");
+                System.out.println("text/plain");
                 MessageBean message = new MessageBean(inMessage.getMessageNumber(), MimeUtility.decodeText(inMessage.getSubject()), inMessage.getFrom()[0].toString(), null, f.format(inMessage.getSentDate()), (String) inMessage.getContent(), false, null);
                 listMessages.add(message);
             } else if (inMessage.isMimeType("multipart/*")) {
                 Multipart mp = (Multipart) inMessage.getContent();
                 MessageBean message = null;
                 for (int i = 0; i < mp.getCount(); i++) {
-          System.out.println("multipart/"+i);
+                    System.out.println("multipart/" + i);
                     Part part = mp.getBodyPart(i);
                     if ((part.getFileName() == null || part.getFileName() == "") && part.isMimeType("text/plain")) {
-          System.out.println("text/plain");
+                        System.out.println("text/plain");
                         String sentDate = "unknown";
                         if (inMessage.getSentDate() != null) {
                             sentDate = f.format(inMessage.getSentDate());

@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="FetchIMAP">
+    <output-path>$PROJECT_DIR$/out/artifacts/FetchIMAP</output-path>
+    <root id="archive" name="HTML_Parser.jar">
+      <element id="module-output" name="HTML_Parser" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/javax/mail/mail/1.4/mail-1.4.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/poi/poi/3.11/poi-3.11.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
