@@ -2,8 +2,6 @@
   <library name="xelem_src.3.0">
     <CLASSES />
     <JAVADOC />
-    <SOURCES>
-      <root url="jar://$PROJECT_DIR$/xelem_src.3.0.jar!/" />
-    </SOURCES>
+    <SOURCES />
   </library>
 </component>
