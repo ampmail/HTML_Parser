@@ -50,17 +50,17 @@ public class SOAPClientSAAJ {
          */
 
         // SOAP Body
-//        SOAPBody soapBody = envelope.getBody();
-//        SOAPElement soapBodyElem = soapBody.addChildElement("VerifyEmail", "example");
-//        SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("email", "example");
-//        soapBodyElem1.addTextNode("mutantninja@gmail.com");
-//        SOAPElement soapBodyElem2 = soapBodyElem.addChildElement("LicenseKey", "example");
-//        soapBodyElem2.addTextNode("123");
+        SOAPBody soapBody = envelope.getBody();
+        SOAPElement soapBodyElem = soapBody.addChildElement("VerifyEmail", "example");
+        SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("email", "example");
+        soapBodyElem1.addTextNode("mutantninja@gmail.com");
+        SOAPElement soapBodyElem2 = soapBodyElem.addChildElement("LicenseKey", "example");
+        soapBodyElem2.addTextNode("123");
 
-//        MimeHeaders headers = soapMessage.getMimeHeaders();
-//        headers.addHeader("SOAPAction", serverURI + "get_product_info");
+        MimeHeaders headers = soapMessage.getMimeHeaders();
+        headers.addHeader("SOAPAction", serverURI + "get_product_info");
 
-//        soapMessage.saveChanges();
+        soapMessage.saveChanges();
 
         /* Print the request message */
         Date date = new Date();
