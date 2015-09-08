@@ -167,7 +167,7 @@ public class XMLpriceDAOImpl implements XMLpriceDAO {
     }
 
     @Override
-    public void update(XMLprice xmlPrice) throws SQLException {
+    public void update(XMLprice xmlPrice) throws SQLException {  //@TODO неправильно!
         if(xmlPrice != null && xmlPrice.getKlientID() != null) {
             // Obtain connection
             connection = connector.getConnection();
@@ -198,7 +198,7 @@ public class XMLpriceDAOImpl implements XMLpriceDAO {
     }
 
     @Override
-    public void delete(Long klientID) throws SQLException {
+    public void delete(Long klientID) throws SQLException { //@TODO удалять по II !!!!!!!!!!!!
         if(klientID != null) {
             // Obtain connection
             connection = connector.getConnection();

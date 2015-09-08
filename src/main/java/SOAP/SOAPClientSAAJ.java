@@ -15,7 +15,7 @@ public class SOAPClientSAAJ {
         // Send SOAP Message to SOAP Server
         // wsimport -keep -s src http://1c.mobilluck.com.ua/dclink.php?wsdl
 
-        String url = "http://1c.mobilluck.com.ua/dclink.php?wsdl";
+        String url = "http://1c.mobilluck.com.ua/dclink.php";
         SOAPMessage soapResponse = soapConnection.call(createSOAPRequest(), url);
 
         // print SOAP Response
@@ -53,7 +53,7 @@ public class SOAPClientSAAJ {
         SOAPBody soapBody = envelope.getBody();
         SOAPElement soapBodyElem = soapBody.addChildElement("VerifyEmail", "example");
         SOAPElement soapBodyElem1 = soapBodyElem.addChildElement("email", "example");
-        soapBodyElem1.addTextNode("mutantninja@gmail.com");
+        soapBodyElem1.addTextNode("@gmail.com");
         SOAPElement soapBodyElem2 = soapBodyElem.addChildElement("LicenseKey", "example");
         soapBodyElem2.addTextNode("123");
 

@@ -12,7 +12,7 @@ import java.net.URLEncoder;
 
 public class DataFromHTML {
 
-    public synchronized StringBuffer getSourceStringDataByArtikul(String artikul) {
+    public StringBuffer getSourceStringDataByArtikul(String artikul) {
         Document doc = null;
         try {
             System.setProperty("http.proxyHost", "178.165.15.40");

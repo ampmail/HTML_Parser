@@ -21,7 +21,7 @@ public class WorkerThread implements Runnable {
 //        System.out.println(Thread.currentThread().getName() + " End.");
     }
 
-    private synchronized void processCommand() {
+    private void processCommand() {
         try {
             Thread.sleep(100);
 
@@ -45,6 +45,8 @@ public class WorkerThread implements Runnable {
 //                System.out.print(price1 + " \t ");
 //                System.out.print(priceUAH + " \n");
                 System.out.println(good);
+            } else {
+                System.out.println("Can't obtain data by artikul: " + artikul);
             }
         } catch (InterruptedException e) {
             System.out.println(e.toString());
