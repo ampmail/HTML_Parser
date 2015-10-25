@@ -22,15 +22,12 @@ public class GoodsScaner {
     public GoodsScaner() {
     }
 
-    public static synchronized Boolean hasNextElement() {
-        if (pointer < goodsCount) {
-            return true;
-        }
-        return false;
+    public synchronized Boolean hasNextElement() {
+        return pointer < goodsCount;
     }
 
-    public static synchronized String getNextGoods() {
-        if (hasNextElement()) {
+    public synchronized String getNextGoods() {
+        if (this.hasNextElement()) {
             return allGoods.get(pointer++).getArtikul();
         }
         return null;

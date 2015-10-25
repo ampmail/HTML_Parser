@@ -1,4 +1,4 @@
-package net.src;
+package utils;
 
 /**
  * Created by AMP on 01.09.2015.
