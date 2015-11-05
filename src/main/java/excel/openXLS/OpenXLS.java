@@ -14,11 +14,11 @@ public class OpenXLS {
 
     public static void main(String[] args) {
 //        doit("forDCNV_RED.xls", "Price R");
-        doit("price-26-10-15.xlsx", "TDSheet");
+        doit("06.11 прайс Рубин.xls", "");
     }
 
     public static void doit(String finpath, String sheetname) {
-        String workingdir = "C:\\Users\\ampuser\\Downloads\\";
+        String workingdir = "D:\\Temp\\1\\";
         System.out.println("Begin parsing: " + workingdir + finpath);
         WorkBookHandle tbo = new WorkBookHandle(workingdir + finpath);
 
@@ -26,9 +26,9 @@ public class OpenXLS {
 //            WorkSheetHandle sheet = tbo.getWorkSheet(sheetname);
             System.out.println(tbo.getActiveSheet().getSheetName());
             WorkSheetHandle sheet = tbo.getWorkSheet(tbo.getActiveSheet().getSheetName());
+            System.out.println(sheet.getFirstCol() + "\t" + sheet.getFirstRow());
             for (int row = 0; row < sheet.getNumRows(); row++){
                 for (int col = 0; col <= sheet.getNumCols(); col++){
-                    if(col == 4) continue;
                     System.out.print(sheet.getCell(row, col).getStringVal());
                     System.out.print("\t");
                 }

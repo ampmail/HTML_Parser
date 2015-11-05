@@ -21,9 +21,10 @@ public class t extends Application {
 
         WebView webView = new WebView();
         WebEngine engine  = webView.getEngine();
-        engine.load("https://www.f.ua");
+        engine.load("https://f.ua/casio/mtp-1303l-1avef.html");
         myPane.getChildren().add(webView);
-        engine.executeScript("history.back()");
+        engine.executeScript("");
+        System.out.println(engine.locationProperty());
 
         Scene myScene = new Scene(myPane);
         primaryStage.setScene(myScene);
