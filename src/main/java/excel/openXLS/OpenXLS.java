@@ -28,6 +28,7 @@ public class OpenXLS {
             WorkSheetHandle sheet = tbo.getWorkSheet(tbo.getActiveSheet().getSheetName());
             for (int row = 0; row < sheet.getNumRows(); row++){
                 for (int col = 0; col <= sheet.getNumCols(); col++){
+                    if(col == 4) continue;
                     System.out.print(sheet.getCell(row, col).getStringVal());
                     System.out.print("\t");
                 }
@@ -39,14 +40,14 @@ public class OpenXLS {
                 // read images from sheet -- .gif, .png, .jpg
                 ImageHandle[] extracted = sheet.getImages();
                 // extract and output images
-                for (int t = 0; t < extracted.length; t++) {
+                for (Integer t = 0; t < extracted.length; t++) {
                     System.out.println("Successfully extracted: "
                             + workingdir + "testImageOut_"
                             + extracted[t].getName() + "."
                             + extracted[t].getType());
 
                     FileOutputStream outimg = new FileOutputStream
-                            (workingdir + "tmp\\" + extracted[t].getName() + "." + extracted[t].getType());
+                            (workingdir + "tmp\\" + extracted[t].getName() + t.toString() + "." + extracted[t].getType());
                     extracted[t].write(outimg);
                     outimg.flush();
                     outimg.close();
