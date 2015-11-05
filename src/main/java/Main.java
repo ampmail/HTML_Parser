@@ -1,3 +1,4 @@
+import com.google.gson.Gson;
 import dao.GoodsForScanDAO;
 import dao.impl.GoodsForScanDAOImpl;
 import dao.impl.XMLpriceDAOImpl;
@@ -5,18 +6,121 @@ import entity.GoodsForScan;
 import entity.XMLprice;
 import jsonProcessing.json_simple.JsonSimpleParser;
 import html.DataFromHTML;
+import org.jsoup.Connection;
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
 
-import java.io.FileWriter;
+import java.io.*;
+import java.net.URLEncoder;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
+import java.net.URL;
 
 public class Main {
 
     private static List<String> scanResultString;
 
     public static void main(String[] args) throws Exception {
+
+        Document doc = null;
+        int status = 0;
+//        HashMap<String, String> map = new HashMap<String, String>();
+//        map.put("key_1", "Baku");
+//        map.put("key_2", "Azerbaijan");
+//        map.put("key_3", "Ali Mamedov");
+//        Gson gson = new Gson();
+//        System.out.println(gson.toJson(map));
+
+        try {
+            String url = "http://www.it-link.ua/Home/SaveGrpSet";
+
+            URL obj = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) obj.openConnection();
+//            conn.setReadTimeout(2000);
+            conn.addRequestProperty("Accept", "application/json, text/javascript, */*; q=0.01");
+            conn.addRequestProperty("Accept-Encoding", "gzip, deflate");
+            conn.addRequestProperty("Accept-Language", "ru-RU,ru;q=0.8,en-US;q=0.6,en;q=0.4,uk;q=0.2");
+            conn.addRequestProperty("Connection", "keep-alive");
+            conn.addRequestProperty("Content-Length", "1000");
+            conn.addRequestProperty("Content-Type", "application/json; charset=UTF-8");
+//            conn.addRequestProperty("User-Agent", "Mozilla");
+            conn.addRequestProperty("Host", "www.it-link.ua");
+            conn.addRequestProperty("Origin", "http://www.it-link.ua");
+            conn.addRequestProperty("Referer", "http://www.it-link.ua/Home");
+            conn.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36");
+            conn.addRequestProperty("X-FirePHP-Version", "0.0.6");
+            conn.addRequestProperty("X-Requested-With", "XMLHttpRequest");
+            conn.setDoOutput(true);
+
+//            OutputStreamWriter w = new OutputStreamWriter(conn.getOutputStream(), "UTF-8");
+
+            String jsonReq = "{\"CatalogId\":\"     A135\",\"Groups\":[],\"Columns\":[{\"Name\":\"Code\",\"Alias\":\"Code\",\"Disabled\":false,\"Required\":true},{\"Name\":\"Qty\",\"Alias\":\"Qty\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Price\",\"Alias\":\"Price\",\"Disabled\":false,\"Required\":true},{\"Name\":\"Model\",\"Alias\":\"Model\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Article\",\"Alias\":\"Article\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Name\",\"Alias\":\"Product name\",\"Disabled\":false,\"Required\":true},{\"Name\":\"Measure\",\"Alias\":\"Meas\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Group\",\"Alias\":\"Group\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Vendor\",\"Alias\":\"Vendor\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Guar\",\"Alias\":\"Guar\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Availability\",\"Alias\":\"Availability\",\"Disabled\":false,\"Required\":true}],\"Formats\":[{\"Name\":\"HTML\",\"Checked\":false},{\"Name\":\"XLS\",\"Checked\":false},{\"Name\":\"XML\",\"Checked\":true},{\"Name\":\"PDF\",\"Checked\":false}],\"Order\":\"BASEPRICE\",\"Direct\":\"DESC\",\"PageSize\":\"12\",\"View\":\"2\"}";
+//            w.write(jsonReq);
+//            w.close();
+
+//            System.out.println("Request URL: " + url);
+//            status = conn.getResponseCode();
+//            System.out.println("Response Code " + status);
+
+//            BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+//            String inputLine;
+//            StringBuffer html = new StringBuffer();
+//            while ((inputLine = in.readLine()) != null) {
+//                html.append(inputLine);
+//            }
+//            in.close();
+//            conn.disconnect();
+//            System.out.println("URL Content... \n" + html.toString());
+//            System.out.println("Done");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        String url = "http://www.it-link.ua/Home/SaveGrpSet";
+        try {
+//            response = Jsoup.connect(url).timeout(3000).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36").post();
+            Connection conn = Jsoup.connect(url).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36").referrer("http://www.it-link.ua/Home").maxBodySize(0).timeout(3000);
+//            Map<String,String> myMap= new HashMap <String, String>();
+//            myMap.put("method", "Catalog.search");
+//            myMap.put("pag", "1");
+//            myMap.put("business_url", "electrodomesticos");
+//            myMap.put("category_url", "climatizacion" );
+//            myMap.put("subcategory_url", "" );
+//            myMap.put("valmin", "-1" );
+//            myMap.put("valmax", "-1");
+            String jsonReq = "{\"CatalogId\":\"     A135\",\"Groups\":[],\"Columns\":[{\"Name\":\"Code\",\"Alias\":\"Code\",\"Disabled\":false,\"Required\":true},{\"Name\":\"Qty\",\"Alias\":\"Qty\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Price\",\"Alias\":\"Price\",\"Disabled\":false,\"Required\":true},{\"Name\":\"Model\",\"Alias\":\"Model\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Article\",\"Alias\":\"Article\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Name\",\"Alias\":\"Product name\",\"Disabled\":false,\"Required\":true},{\"Name\":\"Measure\",\"Alias\":\"Meas\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Group\",\"Alias\":\"Group\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Vendor\",\"Alias\":\"Vendor\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Guar\",\"Alias\":\"Guar\",\"Disabled\":false,\"Required\":false},{\"Name\":\"Availability\",\"Alias\":\"Availability\",\"Disabled\":false,\"Required\":true}],\"Formats\":[{\"Name\":\"HTML\",\"Checked\":false},{\"Name\":\"XLS\",\"Checked\":false},{\"Name\":\"XML\",\"Checked\":true},{\"Name\":\"PDF\",\"Checked\":false}],\"Order\":\"BASEPRICE\",\"Direct\":\"DESC\",\"PageSize\":\"12\",\"View\":\"2\"}";
+            conn.data(jsonReq);
+            conn.post();
+            Connection.Response respon = conn.execute();
+            System.out.println(respon.toString());
+        } catch (IOException e) {
+            System.out.println(e.toString());
+        }
+
+        if(status == 200) {
+            try {
+                doc = Jsoup.connect("http://www.it-link.ua/Home/pricelist?id=%20%20%20%20%20A135").timeout(3000).userAgent("Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/46.0.2490.71 Safari/537.36").get();
+            } catch (IOException e) {
+                System.out.println(e.toString());
+            }
+            if (doc != null) {
+                if (doc.getElementsByTag("tbody") != null) {
+                    System.out.println(doc.body());
+
+                    List table = doc.body().getElementsByTag("tr");
+                    for (Object t : table) {
+                        System.out.println(t);
+                        break;
+                    }
+                }
+            }
+        }
 /*
         scanResultString = new LinkedList<>();
 
@@ -82,6 +186,8 @@ public class Main {
 */
 
 //        convertProductToXml(pricelist);
+
+/*
         int i=0, j=0;
         List<GoodsForScan> goods;
         goods = getAllGoodsForScanFromDB();
@@ -99,6 +205,7 @@ public class Main {
         System.out.println();
         System.out.println("url qty " + i);
         System.out.println("Total goods qty " + j);
+*/
 /*
         List<XMLprice> xmlPrice;
         Long klientID = 5519L;

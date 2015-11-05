@@ -10,13 +10,14 @@ import java.util.concurrent.Executors;
 
 public class SimpleThreadPool {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
 
-        ExecutorService executor = Executors.newFixedThreadPool(6);
+        ExecutorService executor = Executors.newFixedThreadPool(2);
         GoodsScaner gs = new GoodsScaner();
         String artikul;
         while (gs.hasNextElement()){
             artikul = gs.getNextGoods();
+//            artikul = "KX-TS2352UAW";
             if (artikul != null) {
                 Runnable worker = new WorkerThread(artikul);
                 executor.execute(worker);
@@ -24,6 +25,7 @@ public class SimpleThreadPool {
         }
         executor.shutdown();
         while (!executor.isTerminated()) {
+            Thread.sleep(1000L);
         }
         System.out.println("Finished all threads");
 
