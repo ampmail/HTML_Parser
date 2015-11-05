@@ -1,17 +1,6 @@
-package lib.jbaysolutions.excelparser;
+package excel.excelparser;
 
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 import java.io.*;
-import java.net.URL;
 
 /**
  * Created by IntelliJ IDEA.
@@ -23,6 +12,7 @@ import java.net.URL;
  *
  */
 public class ExcelXmlConverter {
+    /*
     public static void main(String[] args) throws Exception {
         getAndConvertFile();
     }
@@ -34,6 +24,8 @@ public class ExcelXmlConverter {
      *
      * @throws Exception
      */
+
+    /*
     private static void getAndConvertFile() throws Exception {
         System.out.println("getAndConvertFile");
         File file = File.createTempFile("substances", "tmp");

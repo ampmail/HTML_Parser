@@ -1,4 +1,4 @@
-package lib.jbaysolutions.excelparser;
+package excel.excelparser;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;

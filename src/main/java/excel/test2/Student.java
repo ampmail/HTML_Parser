@@ -24,4 +24,20 @@ public class Student {
     public String toString() {
         return name+ ": Maths "+maths+ " Science "+science+" English "+english;
     }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setMaths(String maths) {
+        this.maths = maths;
+    }
+
+    public void setScience(String science) {
+        this.science = science;
+    }
+
+    public void setEnglish(String english) {
+        this.english = english;
+    }
 }

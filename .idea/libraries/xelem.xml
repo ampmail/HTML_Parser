@@ -1,8 +1,6 @@
 <component name="libraryTable">
   <library name="xelem">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/xelem.jar!/" />
-    </CLASSES>
+    <CLASSES />
     <JAVADOC />
     <SOURCES />
   </library>

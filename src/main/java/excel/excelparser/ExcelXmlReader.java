@@ -1,4 +1,4 @@
-package lib.jbaysolutions.excelparser;
+package excel.excelparser;
 
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;

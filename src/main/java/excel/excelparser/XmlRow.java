@@ -1,4 +1,4 @@
-package lib.jbaysolutions.excelparser;
+package excel.excelparser;
 
 import java.util.ArrayList;
 

@@ -18,14 +18,14 @@ package excel.test2;
  */
 public class ReadExcelFileExample {
 
-    private static final String FILE_PATH = "/Users/anirudh/Projects/JCGExamples/JavaWriteReadExcelFileExample/testReadStudents.xlsx";
+    private static final String FILE_PATH = "C:\\Users\\ampuser\\Downloads\\grand-x.xlsx";
 
     public static void main(String args[]) {
 
-//        List studentList = getStudentsListFromExcel();
-//        System.out.println(studentList);
+        List studentList = getStudentsListFromExcel();
+        System.out.println(studentList);
     }
-/*
+
     private static List getStudentsListFromExcel() {
         List studentList = new ArrayList();
         FileInputStream fis = null;
@@ -37,6 +37,7 @@ public class ReadExcelFileExample {
 
             int numberOfSheets = workbook.getNumberOfSheets();
 
+            System.out.println("numberOfSheets = "+numberOfSheets);
             //looping over each workbook sheet
             for (int i = 0; i < numberOfSheets; i++) {
                 Sheet sheet = workbook.getSheetAt(i);
@@ -46,13 +47,13 @@ public class ReadExcelFileExample {
                 while (rowIterator.hasNext()) {
 
                     Student student = new Student();
-                    Row row = rowIterator.next();
+                    Row row = (Row) rowIterator.next();
                     Iterator cellIterator = row.cellIterator();
 
                     //Iterating over each cell (column wise)  in a particular row.
                     while (cellIterator.hasNext()) {
 
-                        Cell cell = cellIterator.next();
+                        Cell cell = (Cell)cellIterator.next();
                         //The Cell Containing String will is name.
                         if (Cell.CELL_TYPE_STRING == cell.getCellType()) {
                             student.setName(cell.getStringCellValue());
@@ -88,6 +89,6 @@ public class ReadExcelFileExample {
         }
         return studentList;
     }
-*/
+
 
 }
