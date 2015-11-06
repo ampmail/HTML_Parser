@@ -3,19 +3,25 @@ package entity;
 import java.math.BigDecimal;
 
 public class XMLprice {
+    private Integer OurReserv;
     private Long II;
     private Long klientID;
-    private String Artikul;
     private BigDecimal price1;
     private BigDecimal price_UAH;
-    private String nal;
-    private String war;
-    private String PosCode;
-    private String Tip;
     private BigDecimal priceRRP;
     private BigDecimal priceRRP_UAH;
-    private Boolean ddp;
     private BigDecimal priceDiler;
+    private Boolean ddp;
+    private String Artikul;
+    private String nal;
+    private String PosCode;
+    private String Tip;
+    private String pictureURL;
+    private String tovURL;
+    private String tnved;
+    private String barcode;
+    private String productID;
+    private String war;
 
     public XMLprice() {
     }
