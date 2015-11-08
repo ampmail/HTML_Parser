@@ -27,8 +27,13 @@ public class OpenXLS {
             System.out.println(tbo.getActiveSheet().getSheetName());
             WorkSheetHandle sheet = tbo.getWorkSheet(tbo.getActiveSheet().getSheetName());
             System.out.println(sheet.getFirstCol() + "\t" + sheet.getFirstRow());
-            for (int row = 0; row < sheet.getNumRows(); row++){
-                for (int col = 0; col <= sheet.getNumCols(); col++){
+            Cell[] cells = sheet.getCells();
+            for (Cell cell: cells){
+                System.out.println(cell.toString());
+            }
+
+            for (int row = 0; row < sheet.getNumRows(); row++) {
+                for (int col = 0; col <= sheet.getNumCols(); col++) {
                     System.out.print(sheet.getCell(row, col).getStringVal());
                     System.out.print("\t");
                 }
