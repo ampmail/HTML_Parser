@@ -14,11 +14,11 @@ public class OpenXLS {
 
     public static void main(String[] args) {
 //        doit("forDCNV_RED.xls", "Price R");
-        doit("06.11 прайс Рубин.xls", "");
+        doit("01.09 прайс Рубин.xls", "");
     }
 
     public static void doit(String finpath, String sheetname) {
-        String workingdir = "D:\\Temp\\1\\";
+        String workingdir = "D:\\Temp\\";
         System.out.println("Begin parsing: " + workingdir + finpath);
         WorkBookHandle tbo = new WorkBookHandle(workingdir + finpath);
 
