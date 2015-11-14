@@ -3,14 +3,20 @@ package excel.test1;
 /**
  * Created by ampuser on 02.11.2015.
  */
+        import org.apache.poi.POIXMLDocument;
         import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+        import org.apache.poi.openxml4j.opc.OPCPackage;
+        import org.apache.poi.poifs.filesystem.POIFSFileSystem;
         import org.apache.poi.ss.usermodel.Cell;
         import org.apache.poi.ss.usermodel.Row;
         import org.apache.poi.ss.usermodel.Sheet;
+        import org.apache.poi.ss.usermodel.Workbook;
+        import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
         import java.io.FileInputStream;
         import java.io.IOException;
         import java.io.InputStream;
+        import java.io.PushbackInputStream;
         import java.util.Iterator;
 
 public class Parser {
@@ -18,12 +24,24 @@ public class Parser {
     public static String parse(String name) {
 
         String result = "";
-        InputStream in = null;
-        HSSFWorkbook wb = null;
+        InputStream inputStream = null;
+        InputStream inp;
+        Workbook wb = null;
         try {
-            in = new FileInputStream(name);
-            wb = new HSSFWorkbook(in);
-        } catch (IOException e) {
+            inp = new FileInputStream(name);
+            if(!inp.markSupported()) {
+                inputStream = inp;
+                inp = new PushbackInputStream(inp, 8);
+            }
+
+            if(POIFSFileSystem.hasPOIFSHeader(inp)) {
+                wb =  new HSSFWorkbook(inp);
+            }
+            if(POIXMLDocument.hasOOXMLHeader(inp)) {
+                wb =  new XSSFWorkbook(OPCPackage.open(inputStream));
+                System.out.println(1);
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

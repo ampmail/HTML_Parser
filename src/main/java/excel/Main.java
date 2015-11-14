@@ -8,7 +8,7 @@ import excel.test1.Parser;
 public class Main {
 
     public static void main(String... args){
-        System.out.println(Parser.parse("C:\\Users\\ampuser\\Downloads\\forDCNV_RED.xls"));
+//        System.out.println(Parser.parse("C:\\Users\\ampuser\\Downloads\\forDCNV_RED.xls"));
         System.out.println(Parser.parse("C:\\Users\\ampuser\\Downloads\\price-26-10-15.xlsx"));
     }
 

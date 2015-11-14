@@ -1,11 +1,9 @@
 package excel.openXLS;
 
 import com.extentech.ExtenXLS.*;
-import com.extentech.formats.XLS.Sheet;
+import com.extentech.formats.XLS.WorkSheetNotFoundException;
 
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
+import java.io.*;
 
 /**
  * Created by ampuser on 05.11.2015.
@@ -13,11 +11,15 @@ import java.io.FileOutputStream;
 public class OpenXLS {
 
     public static void main(String[] args) {
-//        doit("forDCNV_RED.xls", "Price R");
-        doit("01.09 прайс Рубин.xls", "");
+        try {
+            doit("price-02-11-15.xlsx", "TDSheet");
+        } catch (WorkSheetNotFoundException e) {
+            e.printStackTrace();
+        }
+//        doit("01.09 прайс Рубин.xls", "");
     }
 
-    public static void doit(String finpath, String sheetname) {
+    public static void doit(String finpath, String sheetname) throws WorkSheetNotFoundException {
         String workingdir = "D:\\Temp\\";
         System.out.println("Begin parsing: " + workingdir + finpath);
         WorkBookHandle tbo = new WorkBookHandle(workingdir + finpath);
@@ -27,19 +29,26 @@ public class OpenXLS {
             System.out.println(tbo.getActiveSheet().getSheetName());
             WorkSheetHandle sheet = tbo.getWorkSheet(tbo.getActiveSheet().getSheetName());
             System.out.println(sheet.getFirstCol() + "\t" + sheet.getFirstRow());
-            Cell[] cells = sheet.getCells();
-            for (Cell cell: cells){
-                System.out.println(cell.toString());
-            }
-
-            for (int row = 0; row < sheet.getNumRows(); row++) {
-                for (int col = 0; col <= sheet.getNumCols(); col++) {
-                    System.out.print(sheet.getCell(row, col).getStringVal());
+            System.out.println(sheet.getLastCol() + "\t" + sheet.getLastRow());
+//            Cell[] cells = sheet.getCells();
+            RowHandle[] rows = sheet.getRows();
+            for (RowHandle row: rows) {
+                CellHandle[] cells = row.getCells();
+                for (CellHandle cell : cells) {
+                    System.out.print(cell.getFormattedStringVal());
                     System.out.print("\t");
                 }
                 System.out.println();
             }
             System.out.println();
+//            for (int row = 0; row < sheet.getNumRows(); row++) {
+//                for (int col = 0; col <= sheet.getNumCols(); col++) {
+//                    System.out.print(sheet.getCell(row, col).getStringVal());
+//                    System.out.print("\t");
+//                }
+//                System.out.println();
+//            }
+//            System.out.println();
 
             if (false) {
                 // read images from sheet -- .gif, .png, .jpg
@@ -51,11 +60,21 @@ public class OpenXLS {
                             + extracted[t].getName() + "."
                             + extracted[t].getType());
 
-                    FileOutputStream outimg = new FileOutputStream
-                            (workingdir + "tmp\\" + extracted[t].getName() + t.toString() + "." + extracted[t].getType());
-                    extracted[t].write(outimg);
-                    outimg.flush();
-                    outimg.close();
+                    FileOutputStream outimg = null;
+                    try {
+                        outimg = new FileOutputStream
+                                (workingdir + "tmp\\" + extracted[t].getName() + t.toString() + "." + extracted[t].getType());
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                    try {
+                        extracted[t].write(outimg);
+                        outimg.flush();
+                        outimg.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
 
